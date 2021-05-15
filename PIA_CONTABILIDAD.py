@@ -1,10 +1,21 @@
-#importaciones y  modulos
+importaciones
 import os
 
-#declaracion de variables
+mtzMateriales.append(dictMateriales.copy())
+Total2016ventas = 0
+def Main():
+    while True:
+        os.system("cls")
+        print("== SISTEMA DE CONTABILIDAD FACPYA ==\n")
+        print("-"*40)
+        print("1.Ventas\n2.Flujo de Entradas\n3.Produccion\n4.Requerimiento de Materiales\n5.Compra de Materiales\n6.Flujo de Salidas\n7.SALIR DEL SISTEMA")
+        print("-"*40)
+        opcion= input("ingresa la opcion deseada:")
+
+        #declaracion de las variables
 mtzArticulos=[]
 mtzMateriales=[]
-mtzPVenta = []  #saldos presupuesto venta
+mtzPVenta = []  #saldos del presupuesto de venta
 mtzPProduccion=[]
 mtzUnidadesProducir=[]
 mtzRequerimientoTotal=[]
@@ -34,19 +45,7 @@ dictMateriales["Nombre"]="MaterialB"
 mtzMateriales.append(dictMateriales.copy())
 
 dictMateriales["Codigo"]="3"
-dictMateriales["Nombre"]="MaterialC"
-mtzMateriales.append(dictMateriales.copy())
-Total2016ventas = 0
-def Main():
-    while True:
-        os.system("cls")
-        print("== SISTEMA DE CONTABILIDAD FACPYA ==\n")
-        print("-"*40)
-        print("1.Ventas\n2.Flujo de Entradas\n3.Produccion\n4.Requerimiento de Materiales\n5.Compra de Materiales\n6.Flujo de Salidas\n7.SALIR DEL SISTEMA")
-        print("-"*40)
-        opcion= input("ingresa la opcion deseada: ")
-
-        if opcion=="1":
+dictMateriales["Nombre"]="MaterialC" if opcion=="1":
             PresupuestoVentas()
         elif opcion=="2":
             while True:
@@ -109,7 +108,7 @@ def Main():
                 print("3.- Regresar al Menú principal")
                 opcion_fe= input("Ingrese una opcion: ")
                 if opcion_fe == "1":
-                    #calcular las compras de 2016
+                    #calcular las compras del año 2016
                     Semestre1=0
                     Semestre2=0
                     for diccionario in mtzPCMateriales:
@@ -153,7 +152,7 @@ def Main():
 
 
 def PresupuestoVentas():
-    #declaracion de variables
+    #se declaran las variables
     lstValArticulo = []
     global mtzPVenta
     global Total2016ventas
@@ -171,7 +170,7 @@ def PresupuestoVentas():
             while True:
                 os.system("cls")
                 print("==Catálogo de artículos==")
-                for Diccionario in mtzArticulos: #imprimir opciones
+                for Diccionario in mtzArticulos: #se imprimen las opciones
                     print(Diccionario["CodArticulo"] + ' - ' + Diccionario["NomArticulo"])
                     lstValArticulo.append(Diccionario["CodArticulo"])
                 print("4 - Regresar a Menu Presupuesto de Ventas")
@@ -248,7 +247,7 @@ def Presupuesto_Produccion():
             while True:
                 os.system("cls")
                 print("==Catálogo de artículos==")
-                for Diccionario in mtzArticulos: #imprimir opciones
+                for Diccionario in mtzArticulos: #se imprimen las opciones
                     print(Diccionario["CodArticulo"] + ' - ' + Diccionario["NomArticulo"])
                     lstValArticulo.append(Diccionario["CodArticulo"])
 
@@ -263,7 +262,7 @@ def Presupuesto_Produccion():
                             elif(Campo == "Semestre"):
                                 dicPProduccion[Campo] = (Cont + 1)
                             elif Campo == "UndVender":
-                                #accedemos a la matriz de venta para extraer las unidades a vender
+                                #se accede a la matriz de venta para extraer las unidades a vender
                                 for dicc in mtzPVenta:
                                     if dicc["CodArticulo"]== Opcion:
                                         if dicc["Semestre"]== (Cont+1):
